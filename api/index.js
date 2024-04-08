@@ -7,6 +7,7 @@ import cookieParser from 'cookie-parser';
 import postRoutes from '../api/route/post.route.js'
 import commentRoutes from '../api/route/comment.route.js'
 import cors from'cors';
+import path from 'path';
 
 dotenv.config();
 
@@ -37,6 +38,10 @@ app.use('/api/user', userRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/post', postRoutes);
 app.use('/api/comment', commentRoutes);
+
+app.use('*', (req,res) => {
+    res.sendFile(path.resolve(__dirname,'build','index.html'))
+})
 
 app.use((err, req, res, next) => {
     const statusCode = err.statusCode || 500;

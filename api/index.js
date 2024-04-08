@@ -6,7 +6,7 @@ import authRoutes from '../api/route/auth.route.js'
 import cookieParser from 'cookie-parser';
 import postRoutes from '../api/route/post.route.js'
 import commentRoutes from '../api/route/comment.route.js'
-// import path from 'path';
+import cors from'cors';
 
 dotenv.config();
 
@@ -18,9 +18,17 @@ mongoose.connect(process.env.MONGO_URI)
         console.log(err)
     });
 
-    // const __dirname = path.resolve();
+    
 
 const app = express();
+
+app.use(cors(
+    {
+        origin: ["https://insights-blog-8bn9.vercel.app/"],
+        methods: ["POST", "GET", "PUT", "DELETE"],
+        credentials: true
+    }
+))
 
 app.use(express.json());
 app.use(cookieParser());
@@ -29,12 +37,6 @@ app.use('/api/user', userRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/post', postRoutes);
 app.use('/api/comment', commentRoutes);
-
-// app.use(express.static(path.join(__dirname, '/client/dist')));
-
-// app.get('*', (req, res) => {
-//     res.sendFile(path.join(__dirname, 'client', 'dist', 'index.html'));
-// });
 
 app.use((err, req, res, next) => {
     const statusCode = err.statusCode || 500;

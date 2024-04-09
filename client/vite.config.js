@@ -6,7 +6,7 @@ export default defineConfig({
   server:{
     proxy: {
       '/api' : {
-        target: 'https://insights-blog-a5og.vercel.app/',
+        target: 'https://insights-blog-a5og.vercel.app',
         secure: false,
       }
     }

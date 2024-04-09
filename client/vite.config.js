@@ -7,6 +7,7 @@ export default defineConfig({
     proxy: {
       '/api' : {
         target: 'https://insights-blog-a5og.vercel.app',
+        // target: 'http://localhost:8080',
         secure: false,
       }
     }

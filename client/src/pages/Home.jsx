@@ -9,6 +9,7 @@ function Home() {
   useEffect(() => {
     const fetchPosts = async () => {
       const res = await fetch("/api/post/getPosts");
+      console.log(res)
       const data = await res.json();
       setPosts(data.posts);
       console.log(data.posts)

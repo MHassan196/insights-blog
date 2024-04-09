@@ -25,7 +25,7 @@ const app = express();
 const __dirname = path.resolve();
 app.use(cors(
     {
-        origin: ["https://insights-blog-8bn9.vercel.app/"],
+        origin: ["https://insights-blog-8bn9.vercel.app"],
         methods: ["POST", "GET", "PUT", "DELETE"],
         credentials: true
     }
